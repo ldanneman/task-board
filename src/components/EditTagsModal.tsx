@@ -1,4 +1,3 @@
-import React from "react";
 import { Modal, Form, Stack, Row, Col, Button } from "react-bootstrap";
 import { Tag } from "../App";
 

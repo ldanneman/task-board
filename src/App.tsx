@@ -30,9 +30,20 @@ export type NoteData = {
   tags: Tag[];
 };
 
+type Mutable<Type> = {
+  -readonly [Key in keyof Type]: Type[Key];
+};
+
 export type Tag = {
   id: string;
   label: string;
+  [key: string]: any;
+};
+
+export type ETag = {
+  label: string;
+  value: string;
+  [key: string]: any;
 };
 
 function App() {

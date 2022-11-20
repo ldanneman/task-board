@@ -32,15 +32,16 @@ function NoteForm({
     return { label: tag.label, value: tag.id };
   });
 
-  const modifyTags = (tags) => {
+  const modifyTags = (tags: any) => {
+    console.log("TAGS", tags);
     setSelectedTags(
-      tags.map((tag) => {
+      tags.map((tag: Tag) => {
         return { label: tag.label, id: tag.value };
       })
     );
   };
 
-  const handleCreateNewTag = (label) => {
+  const handleCreateNewTag = (label: string) => {
     const newTag = { id: uuidV4(), label };
     onAddTag(newTag);
     setSelectedTags((prev) => [...prev, newTag]);

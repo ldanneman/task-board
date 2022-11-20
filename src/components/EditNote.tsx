@@ -1,4 +1,3 @@
-import React from "react";
 import { NoteData, Tag } from "../App";
 import useNote from "../hooks/useNote";
 import NoteForm from "./NoteForm";

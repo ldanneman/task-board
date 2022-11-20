@@ -45,9 +45,9 @@ function NoteList({
     return { label: tag.label, value: tag.id };
   });
 
-  const modifyTags = (tags) => {
+  const modifyTags = (tags: any) => {
     setSelectedTags(
-      tags.map((tag) => {
+      tags.map((tag: Tag) => {
         return { label: tag.label, id: tag.value };
       })
     );
