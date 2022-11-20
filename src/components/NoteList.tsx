@@ -5,16 +5,24 @@ import ReactSelect from "react-select";
 import { Tag } from "../App";
 import { SimplifiedNote } from "./NoteCard";
 import NoteCard from "./NoteCard";
-import styles from "../styles/NoteList.module.css";
+import EditTagsModal from "./EditTagsModal";
 
 type NoteListProps = {
   availableTags: Tag[];
   notes: SimplifiedNote[];
+  onDeleteTag: (id: string) => void;
+  onUpdateTag: (id: string, label: string) => void;
 };
 
-function NoteList({ availableTags, notes }: NoteListProps) {
+function NoteList({
+  availableTags,
+  notes,
+  onUpdateTag,
+  onDeleteTag,
+}: NoteListProps) {
   const [selectedTags, setSelectedTags] = React.useState<Tag[]>([]);
   const [title, setTitle] = React.useState("");
+  const [editTagsModalIsOpen, setEditTagsModalIsOpen] = React.useState(false);
 
   const filteredNotes = React.useMemo(() => {
     return notes.filter((note) => {
@@ -56,7 +64,12 @@ function NoteList({ availableTags, notes }: NoteListProps) {
             <Link to="/new">
               <Button variant="primary">Create</Button>
             </Link>
-            <Button variant="outline-secondary">Edit Tags</Button>
+            <Button
+              variant="outline-secondary"
+              onClick={() => setEditTagsModalIsOpen(true)}
+            >
+              Edit Tags
+            </Button>
           </Stack>
         </Col>
       </Row>
@@ -92,6 +105,13 @@ function NoteList({ availableTags, notes }: NoteListProps) {
           </Col>
         ))}
       </Row>
+      <EditTagsModal
+        availableTags={availableTags}
+        show={editTagsModalIsOpen}
+        handleClose={() => setEditTagsModalIsOpen(false)}
+        onUpdateTag={onUpdateTag}
+        onDeleteTag={onDeleteTag}
+      />
     </>
   );
 }

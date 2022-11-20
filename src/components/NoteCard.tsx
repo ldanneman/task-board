@@ -1,5 +1,4 @@
-import React from "react";
-import { Row, Col, Stack, Button, Form, Card, Badge } from "react-bootstrap";
+import { Stack, Card, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Tag } from "../App";
 import styles from "../styles/NoteList.module.css";
