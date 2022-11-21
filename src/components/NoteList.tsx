@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col, Stack, Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import ReactSelect from "react-select";
+import ReactSelect, { MultiValue } from "react-select";
 import { Tag } from "../App";
 import { SimplifiedNote } from "./NoteCard";
 import NoteCard from "./NoteCard";
@@ -45,9 +45,11 @@ function NoteList({
     return { label: tag.label, value: tag.id };
   });
 
-  const modifyTags = (tags: any) => {
+  const modifyTags = (
+    tags: Tag[] | MultiValue<{ label: string; value: string }>
+  ) => {
     setSelectedTags(
-      tags.map((tag: Tag) => {
+      tags.map((tag) => {
         return { label: tag.label, id: tag.value };
       })
     );

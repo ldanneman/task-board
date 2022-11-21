@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import CreateableReactSelect from "react-select/creatable";
 import { NoteData, Tag } from "../App";
 import { v4 as uuidV4 } from "uuid";
+import { MultiValue } from "react-select";
 
 type NoteFormProps = {
   onSubmit: (data: NoteData) => void;
@@ -32,10 +33,12 @@ function NoteForm({
     return { label: tag.label, value: tag.id };
   });
 
-  const modifyTags = (tags: any) => {
-    console.log("TAGS", tags);
+  const modifyTags = (
+    tags: Tag[] | MultiValue<{ label: string; value: string }>
+  ) => {
+    console.log("TAGS", typeof tags);
     setSelectedTags(
-      tags.map((tag: Tag) => {
+      tags.map((tag) => {
         return { label: tag.label, id: tag.value };
       })
     );
